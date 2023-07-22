@@ -10,6 +10,7 @@ import SwiftUI
 struct AddBookView: View {
     // Environment variable to store managed context
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.dismiss) var dismiss
     
     @State private var title: String = ""
     @State private var author: String = ""
@@ -57,6 +58,7 @@ struct AddBookView: View {
                         newBook.review = review
                         
                         try? moc.save()
+                        dismiss()
                     }
                 }
             }
