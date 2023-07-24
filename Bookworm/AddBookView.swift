@@ -18,6 +18,15 @@ struct AddBookView: View {
     @State private var genre: String = ""
     @State private var review: String = ""
     
+    // Form validation
+    var isValidBook: Bool {
+        if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return false
+        }
+        
+        return true
+    }
+    
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
     var body: some View {
@@ -56,10 +65,12 @@ struct AddBookView: View {
                         dismiss()
                     }
                 }
+                .disabled(isValidBook == false)
             }
             .navigationTitle("Add Book")
         }
     }
+    
 }
 
 struct AddBookView_Previews: PreviewProvider {
