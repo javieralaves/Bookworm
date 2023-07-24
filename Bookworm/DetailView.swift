@@ -30,6 +30,10 @@ struct DetailView: View {
                     .background(.black.opacity(0.75))
                     .clipShape(Capsule())
                     .offset(x: -5, y: -5)
+                
+                if let date = book.date {
+                    Text(date.formatted(date: .abbreviated, time: .omitted))
+                }
             }
             
             Text(book.author ?? "Unknown Author")
